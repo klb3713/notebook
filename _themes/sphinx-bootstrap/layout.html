@@ -195,7 +195,9 @@
 {% endblock %}
 
 <ul class="quick-links">
-    <li><strong>Quick links</strong></li>
+    <li>
+        <a href="http://note.klb3713.com">返回博客</a>
+    </li>
     <li>
         <a href="https://github.com/{{ theme_github_user }}/{{ theme_github_repo }}/">GitHub</a>
     </li>
@@ -233,8 +235,20 @@
                 <div class="span9">
                     {% block body %} {% endblock %}
                     {% if theme_disqus_shortname %}
-                        <div id="disqus_thread"></div>
-                        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                        <!-- Duoshuo Comment BEGIN -->
+	                    <div class="ds-thread"></div>
+                        <script type="text/javascript">
+                        var duoshuoQuery = {short_name:"klbnote"};
+	                    (function() {
+		                    var ds = document.createElement('script');
+		                    ds.type = 'text/javascript';ds.async = true;
+		                    ds.src = 'http://static.duoshuo.com/embed.js';
+		                    ds.charset = 'UTF-8';
+		                    (document.getElementsByTagName('head')[0] 
+		                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+	                    })();
+	                    </script>
+                        <!-- Duoshuo Comment END -->
                     {% endif %}
                 </div>
             {%- endblock %}
@@ -279,25 +293,6 @@
     </div>
 {%- endblock %}
 
-{% if theme_disqus_shortname %}
-    <!-- disqus -->
-    <script type="text/javascript">
-        var disqus_title = '{{ title|striptags|e }}{{ titlesuffix }}';
-        var disqus_identifier ='code' + '.' + "{{ theme_disqus_shortname }}" + window.location.pathname.replace('/', '.');
-    </script>
-
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = "{{ theme_disqus_shortname }}"; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-{% endif %}
 
 <script type="text/javascript">
     $('.nav .active').on('click', function () {
@@ -317,9 +312,6 @@
         s.parentNode.insertBefore(po, s);
     })();
 </script>
-
-<!-- twitter -->
-<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 
 </body>
 </html>
